@@ -43,6 +43,7 @@ final class Statements
                    AND (DIGEST_TEXT LIKE 'SELECT%' OR DIGEST_TEXT LIKE 'UPDATE%' OR DIGEST_TEXT LIKE 'DELETE%' OR DIGEST_TEXT LIKE 'INSERT%' OR DIGEST_TEXT LIKE 'WITH%')
                    AND DIGEST_TEXT NOT LIKE '%performance_schema%' AND DIGEST_TEXT NOT LIKE '%information_schema%'
                    AND DIGEST_TEXT NOT LIKE '%`mysql`.%' AND DIGEST_TEXT NOT LIKE '%mysql.innodb_%'
+                   AND DIGEST_TEXT NOT LIKE 'SELECT @@%'
                  ORDER BY SUM_TIMER_WAIT DESC
                  LIMIT 500",
                 [$db->info()->schema],
@@ -53,11 +54,14 @@ final class Statements
             )[0]['n'] ?? 0);
 
             // Native (binary protocol) prepared statements, Laravel's default, are executed as
-            // statement/com/Execute and get no SQL text and no digest on MySQL or MariaDB.
-            if ($rows === [] && self::$executes[$key] > 0) {
+            // statement/com/Execute and get no SQL text and no digest on MySQL or MariaDB. When they
+            // outnumber what is visible, a clean result would be a false all-clear, so skip instead.
+            $visible = array_sum(array_map(static fn (array $r): int => (int) $r['calls'], $rows));
+
+            if (self::$executes[$key] > 0 && self::$executes[$key] > $visible) {
                 throw new CheckUnavailable(
-                    number_format(self::$executes[$key]).' statements on this server were sent as native prepared statements, which MySQL and MariaDB do not record per query. '
-                    .'Laravel does this by default, so no query from your app is in the statistics yet.',
+                    number_format(self::$executes[$key]).' statements on this server were sent as native prepared statements, which MySQL and MariaDB do not record per query, '
+                    .'against '.number_format($visible).' recorded for this schema. Laravel sends queries this way by default, so most of your app is not in the statistics.',
                     "Switch the connection to emulated prepares: one round trip per query instead of three, and PHP 8.1+ still returns native int/float types.\n"
                     .self::EMULATE_PREPARES_HINT,
                 );

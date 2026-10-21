@@ -83,6 +83,7 @@ function resetStatistics(): void
     DB::statement('TRUNCATE TABLE performance_schema.events_statements_summary_by_digest');
     DB::statement('TRUNCATE TABLE performance_schema.table_io_waits_summary_by_index_usage');
     DB::statement('TRUNCATE TABLE performance_schema.table_io_waits_summary_by_table');
+    DB::statement('TRUNCATE TABLE performance_schema.events_statements_summary_global_by_event_name');
     Statements::flush();
 }
 
