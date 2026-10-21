@@ -65,8 +65,8 @@ final class RedundantIndexes implements Check
                     fix: 'ALTER TABLE '.Sql::id($table).' DROP INDEX '.Sql::id($redundant).';',
                     laravel: Sql::migration($table, "\$table->dropIndex('".addslashes($redundant)."');"),
                     evidence: [
-                        $redundant => '('.implode(', ', $indexes[$redundant]['parts']).')',
-                        $coveredBy => '('.implode(', ', $indexes[$coveredBy]['parts']).')',
+                        'redundant' => $redundant.' ('.implode(', ', $indexes[$redundant]['parts']).')',
+                        'covered_by' => $coveredBy.' ('.implode(', ', $indexes[$coveredBy]['parts']).')',
                     ],
                 );
             }

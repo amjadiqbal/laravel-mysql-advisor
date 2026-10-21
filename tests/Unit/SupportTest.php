@@ -2,6 +2,7 @@
 
 use AmjadIqbal\MysqlAdvisor\Checks\Indexes\UnindexedForeignKeys;
 use AmjadIqbal\MysqlAdvisor\Checks\Queries\NPlusOneSuspects;
+use AmjadIqbal\MysqlAdvisor\Checks\Queries\Statements;
 use AmjadIqbal\MysqlAdvisor\Checks\Thresholds;
 use AmjadIqbal\MysqlAdvisor\Database\MysqlDatabase;
 use AmjadIqbal\MysqlAdvisor\ServerInfo;
@@ -58,4 +59,10 @@ it('matches ignored tables by pattern', function () {
     $t = new Thresholds([], ['telescope_*', 'sessions']);
 
     expect($t->ignores('telescope_entries'))->toBeTrue()->and($t->ignores('sessions'))->toBeTrue()->and($t->ignores('users'))->toBeFalse();
+});
+
+it('offers EXPLAIN only for reads, as a template to fill in', function () {
+    expect(Statements::explain('SELECT * FROM `t` WHERE `a` = ?'))
+        ->toBe("-- replace each ? with a real value from your logs, then run:\nEXPLAIN SELECT * FROM `t` WHERE `a` = ?;")
+        ->and(Statements::explain('INSERT INTO `t` VALUES (...)'))->toBeNull();
 });

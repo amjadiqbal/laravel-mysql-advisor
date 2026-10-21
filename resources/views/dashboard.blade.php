@@ -206,13 +206,21 @@
     document.querySelectorAll('.copy').forEach(function (button) {
         button.addEventListener('click', function () {
             var text = button.closest('.fix').querySelector('pre').innerText;
-            var done = function () { button.textContent = 'Copied'; setTimeout(function () { button.textContent = 'Copy'; }, 1500); };
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(done);
-            } else {
+            var done = function (label) { button.textContent = label; setTimeout(function () { button.textContent = 'Copy'; }, 1500); };
+            var fallback = function () {
+                // The Clipboard API can be refused (permissions, iframes); select-and-copy still works there.
                 var area = document.createElement('textarea');
-                area.value = text; document.body.appendChild(area); area.select();
-                try { document.execCommand('copy'); done(); } finally { area.remove(); }
+                area.value = text; area.setAttribute('readonly', ''); area.style.position = 'fixed'; area.style.opacity = '0';
+                document.body.appendChild(area); area.select();
+                var ok = false;
+                try { ok = document.execCommand('copy'); } catch (e) {} finally { area.remove(); }
+                done(ok ? 'Copied' : 'Press Ctrl+C');
+                if (! ok) { window.getSelection().selectAllChildren(button.closest('.fix').querySelector('pre')); }
+            };
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback);
+            } else {
+                fallback();
             }
         });
     });

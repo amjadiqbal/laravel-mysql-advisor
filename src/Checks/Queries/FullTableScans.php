@@ -73,7 +73,7 @@ final class FullTableScans implements Check
                         : 'Index the columns used in its WHERE, JOIN and ORDER BY clauses, then confirm with EXPLAIN on a real query of this shape.'),
                 fix: $suggest
                     ? 'ALTER TABLE '.Sql::id((string) $shape->table).' ADD INDEX '.Sql::id((string) $indexName).' ('.Sql::columns($shape->equalityColumns).');'
-                    : 'EXPLAIN '.$s['text'].';',
+                    : Statements::explain($s['text']),
                 laravel: $suggest ? Sql::migration((string) $shape->table, '$table->index('.Sql::phpList($shape->equalityColumns).');') : null,
                 evidence: [
                     'statement' => Statements::short($s['text'], 400),

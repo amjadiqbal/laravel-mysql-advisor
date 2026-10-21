@@ -62,7 +62,7 @@ final class SlowestStatements implements Check
                     .($slow
                         ? 'Each run is slow. Run EXPLAIN on a real query of this shape and look for "ALL" in the type column or "Using filesort" / "Using temporary".'
                         : 'Each run is fast, so the cost is volume: caching the result, or loading it once per request instead of per row, saves the most here.'),
-                fix: 'EXPLAIN '.$s['text'].';',
+                fix: Statements::explain($s['text']),
                 evidence: [
                     'statement' => Statements::short($s['text'], 400),
                     'calls' => $s['calls'],

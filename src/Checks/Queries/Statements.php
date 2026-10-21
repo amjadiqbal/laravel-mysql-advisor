@@ -19,6 +19,9 @@ final class Statements
     /** @var array<string, int> */
     private static array $executes = [];
 
+    /** @var array<string, CheckUnavailable> */
+    private static array $unavailable = [];
+
     public const EMULATE_PREPARES_HINT = "// config/database.php, in your mysql/mariadb connection:\n"
         ."'options' => [\n    PDO::ATTR_EMULATE_PREPARES => true,\n    // ...keep any options already there\n],";
 
@@ -30,6 +33,11 @@ final class Statements
         Requires::performanceSchema($db);
 
         $key = spl_object_id($db).':'.$db->info()->schema;
+
+        // Every query check asks; they should all get the same answer, with the same numbers.
+        if (isset(self::$unavailable[$key])) {
+            throw self::$unavailable[$key];
+        }
 
         if (! isset(self::$cache[$key])) {
             Requires::consumer($db, 'statements_digest');
@@ -59,7 +67,7 @@ final class Statements
             $visible = array_sum(array_map(static fn (array $r): int => (int) $r['calls'], $rows));
 
             if (self::$executes[$key] > 0 && self::$executes[$key] > $visible) {
-                throw new CheckUnavailable(
+                throw self::$unavailable[$key] = new CheckUnavailable(
                     number_format(self::$executes[$key]).' statements on this server were sent as native prepared statements, which MySQL and MariaDB do not record per query, '
                     .'against '.number_format($visible).' recorded for this schema. Laravel sends queries this way by default, so most of your app is not in the statistics.',
                     "Switch the connection to emulated prepares: one round trip per query instead of three, and PHP 8.1+ still returns native int/float types.\n"
@@ -97,6 +105,19 @@ final class Statements
     {
         self::$cache = [];
         self::$executes = [];
+        self::$unavailable = [];
+    }
+
+    /**
+     * A digest is a template: values are "?". Offer EXPLAIN only for reads, and say what to fill in.
+     */
+    public static function explain(string $text): ?string
+    {
+        if (! preg_match('~^\s*(SELECT|WITH)\b~i', $text)) {
+            return null;
+        }
+
+        return "-- replace each ? with a real value from your logs, then run:\nEXPLAIN ".$text.';';
     }
 
     public static function short(string $text, int $length = 120): string
