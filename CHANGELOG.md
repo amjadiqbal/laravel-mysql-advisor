@@ -6,6 +6,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-21
+
 ### Added
 
 - 13 read-only checks for MySQL 8 and MariaDB 10.6+:
@@ -18,3 +20,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - A Blade dashboard at `/mysql-advisor`, behind the `viewMysqlAdvisor` gate (local only by default), with no assets to build.
 - Graceful degradation: when performance_schema is off, a privilege is missing, or the app uses native prepared statements (invisible to performance_schema digests), the affected checks are listed as skipped with the reason and the exact `GRANT` or setting to enable them.
 - `php artisan about` entry.
+
+[Unreleased]: https://github.com/amjadiqbal/laravel-mysql-advisor/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/amjadiqbal/laravel-mysql-advisor/releases/tag/v0.1.0
