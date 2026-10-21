@@ -19,6 +19,10 @@ function ([`ReadOnlyGuard`](src/Database/ReadOnlyGuard.php)).
 [![PHP Version](https://img.shields.io/packagist/php-v/amjadiqbal/laravel-mysql-advisor?style=flat-square)](https://packagist.org/packages/amjadiqbal/laravel-mysql-advisor)
 [![License](https://img.shields.io/packagist/l/amjadiqbal/laravel-mysql-advisor.svg?style=flat-square)](LICENSE.md)
 
+<p align="center">
+  <img alt="The MySQL Advisor dashboard on MariaDB 11: two full table scans on posts, each with the ALTER TABLE statement and the Laravel migration that adds the missing index" src="art/screenshot.png" width="100%">
+</p>
+
 ```bash
 composer require amjadiqbal/laravel-mysql-advisor
 php artisan mysql-advisor:report

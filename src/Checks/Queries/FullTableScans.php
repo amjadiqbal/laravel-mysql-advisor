@@ -69,7 +69,7 @@ final class FullTableScans implements Check
                     .($shape->table !== null ? " on {$shape->table}" : '')
                     .' and read '.number_format($s['rows_examined']).' rows in total to return '.number_format($s['rows_sent']).'. '
                     .($suggest
-                        ? 'An index on the columns it filters by would let MySQL jump straight to the rows. Confirm with EXPLAIN on a real query of this shape first.'
+                        ? 'An index on the columns it filters by would let the server jump straight to the rows. Confirm with EXPLAIN on a real query of this shape first.'
                         : 'Index the columns used in its WHERE, JOIN and ORDER BY clauses, then confirm with EXPLAIN on a real query of this shape.'),
                 fix: $suggest
                     ? 'ALTER TABLE '.Sql::id((string) $shape->table).' ADD INDEX '.Sql::id((string) $indexName).' ('.Sql::columns($shape->equalityColumns).');'

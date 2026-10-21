@@ -80,7 +80,7 @@
     <header>
         <div class="brand">
             <svg width="38" height="38" viewBox="0 0 512 512" aria-hidden="true">
-                <rect width="512" height="512" rx="112" fill="#0F172A"/>
+                <rect x="8" y="8" width="496" height="496" rx="108" fill="#0F172A" stroke="#334155" stroke-width="16"/>
                 <rect x="64" y="96" width="384" height="312" rx="30" fill="#1E293B"/>
                 <path d="M40 288 H200 L226 236 L258 344 L286 264 L304 288 H330" fill="none" stroke="#38BDF8" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
                 <circle cx="382" cy="376" r="78" fill="#0284C7" stroke="#0F172A" stroke-width="14"/>
