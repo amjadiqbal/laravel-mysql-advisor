@@ -1,0 +1,47 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="100%" stop-color="#111C33"/>
+    </linearGradient>
+    <linearGradient id="iconbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#132844"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <g transform="translate(110,96) scale(0.5)">
+    <rect width="512" height="512" rx="112" fill="url(#iconbg)"/>
+    <rect x="64" y="96" width="384" height="312" rx="30" fill="#1E293B"/>
+    <path d="M64 126 a30 30 0 0 1 30 -30 H418 a30 30 0 0 1 30 30 V164 H64 Z" fill="#334155"/>
+    <rect x="96" y="122" width="72" height="16" rx="8" fill="#94A3B8"/>
+    <rect x="208" y="122" width="96" height="16" rx="8" fill="#94A3B8"/>
+    <rect x="340" y="122" width="72" height="16" rx="8" fill="#94A3B8"/>
+    <path d="M64 226 H448 M64 288 H448 M64 350 H448" stroke="#334155" stroke-width="4"/>
+    <path d="M188 164 V408 M320 164 V408" stroke="#334155" stroke-width="4"/>
+    <circle cx="104" cy="195" r="11" fill="#22C55E"/>
+    <rect x="128" y="189" width="44" height="12" rx="6" fill="#475569"/>
+    <circle cx="104" cy="257" r="11" fill="#EF4444"/>
+    <rect x="128" y="251" width="44" height="12" rx="6" fill="#475569"/>
+    <circle cx="104" cy="319" r="11" fill="#22C55E"/>
+    <rect x="128" y="313" width="44" height="12" rx="6" fill="#475569"/>
+    <circle cx="104" cy="381" r="11" fill="#F59E0B"/>
+    <rect x="128" y="375" width="44" height="12" rx="6" fill="#475569"/>
+    <rect x="208" y="189" width="92" height="12" rx="6" fill="#475569"/>
+    <rect x="208" y="313" width="72" height="12" rx="6" fill="#475569"/>
+    <rect x="340" y="189" width="60" height="12" rx="6" fill="#475569"/>
+    <rect x="340" y="251" width="80" height="12" rx="6" fill="#475569"/>
+    <path d="M40 288 H200 L226 236 L258 344 L286 264 L304 288 H330" fill="none" stroke="#38BDF8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="382" cy="376" r="78" fill="#0284C7" stroke="#0F172A" stroke-width="14"/>
+    <path d="M346 378 L372 404 L420 352" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+  <g transform="translate(110,380)"><rect width="300" height="54" rx="12" fill="#16213A" stroke="#24324F"/><circle cx="22" cy="27" r="7" fill="#EF4444"/><text x="40" y="23" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#CBD5E1">FK without index</text><text x="40" y="42" font-family="Menlo, Consolas, monospace" font-size="11.5" fill="#7DD3FC">ALTER TABLE orders ADD INDEX …</text></g><g transform="translate(110,444)"><rect width="300" height="54" rx="12" fill="#16213A" stroke="#24324F"/><circle cx="22" cy="27" r="7" fill="#F59E0B"/><text x="40" y="23" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#CBD5E1">Redundant index</text><text x="40" y="42" font-family="Menlo, Consolas, monospace" font-size="11.5" fill="#7DD3FC">DROP INDEX idx_user ON posts;</text></g><g transform="translate(110,508)"><rect width="300" height="54" rx="12" fill="#16213A" stroke="#24324F"/><circle cx="22" cy="27" r="7" fill="#22C55E"/><text x="40" y="23" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#CBD5E1">Buffer pool hit 99.6%</text><text x="40" y="42" font-family="Menlo, Consolas, monospace" font-size="11.5" fill="#7DD3FC">no action</text></g>
+  <text x="470" y="200" font-family="Helvetica, Arial, sans-serif" font-size="66" font-weight="700" fill="#F8FAFC">Laravel MySQL</text>
+  <text x="470" y="276" font-family="Helvetica, Arial, sans-serif" font-size="66" font-weight="700" fill="#F8FAFC">Advisor</text>
+  <text x="472" y="330" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#38BDF8" letter-spacing="0.3">Find the slow parts of your database.</text>
+  <text x="472" y="366" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="600" fill="#38BDF8" letter-spacing="0.3">Get the exact SQL to fix them.</text>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#CBD5E1" text-anchor="middle"><g transform="translate(472,410)"><rect width="254" height="38" rx="19.0" fill="#16213A" stroke="#24324F"/><text x="127.0" y="25.08">unused &amp; missing indexes</text></g><g transform="translate(736,410)"><rect width="186" height="38" rx="19.0" fill="#16213A" stroke="#24324F"/><text x="93.0" y="25.08">N+1 &amp; full scans</text></g><g transform="translate(932,410)"><rect width="140" height="38" rx="19.0" fill="#16213A" stroke="#24324F"/><text x="70.0" y="25.08">table health</text></g></g>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#CBD5E1" text-anchor="middle"><g transform="translate(472,460)"><rect width="290" height="38" rx="19.0" fill="#16213A" stroke="#24324F"/><text x="145.0" y="25.08">artisan report + CI exit code</text></g><g transform="translate(772,460)"><rect width="172" height="38" rx="19.0" fill="#16213A" stroke="#24324F"/><text x="86.0" y="25.08">Blade dashboard</text></g><g transform="translate(954,460)"><rect width="108" height="38" rx="19.0" fill="#16213A" stroke="#24324F"/><text x="54.0" y="25.08">MariaDB</text></g></g>
+  <text x="472" y="560" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="600" fill="#94A3B8">Read-only · never runs a fix</text>
+  <text x="1170" y="605" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#64748B">github.com/amjadiqbal/laravel-mysql-advisor</text>
+</svg>
