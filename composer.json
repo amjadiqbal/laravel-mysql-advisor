@@ -20,7 +20,7 @@
         "n-plus-one",
         "performance-schema"
     ],
-    "homepage": "https://github.com/amjadiqbal/laravel-mysql-advisor",
+    "homepage": "https://amjad.com.pk/laravel/packages/laravel-mysql-advisor",
     "authors": [
         {
             "name": "Amjad Iqbal",
@@ -31,7 +31,7 @@
     "support": {
         "issues": "https://github.com/amjadiqbal/laravel-mysql-advisor/issues",
         "source": "https://github.com/amjadiqbal/laravel-mysql-advisor",
-        "docs": "https://github.com/amjadiqbal/laravel-mysql-advisor#readme"
+        "docs": "https://amjad.com.pk/laravel/packages/laravel-mysql-advisor"
     },
     "require": {
         "php": "^8.3",

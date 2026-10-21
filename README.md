@@ -15,6 +15,8 @@ or Laravel migration that fixes it**, as a Blade dashboard and as an artisan rep
 It never runs a fix. Every statement it sends is a `SELECT` or `SHOW`, and you can check that in one
 function ([`ReadOnlyGuard`](src/Database/ReadOnlyGuard.php)).
 
+Docs and demo: https://amjad.com.pk/laravel/packages/laravel-mysql-advisor
+
 [![Latest Version](https://img.shields.io/packagist/v/amjadiqbal/laravel-mysql-advisor.svg?style=flat-square)](https://packagist.org/packages/amjadiqbal/laravel-mysql-advisor)
 [![PHP Version](https://img.shields.io/packagist/php-v/amjadiqbal/laravel-mysql-advisor?style=flat-square)](https://packagist.org/packages/amjadiqbal/laravel-mysql-advisor)
 [![License](https://img.shields.io/packagist/l/amjadiqbal/laravel-mysql-advisor.svg?style=flat-square)](LICENSE.md)
