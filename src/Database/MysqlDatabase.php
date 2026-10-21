@@ -132,6 +132,9 @@ final class MysqlDatabase implements Database
     {
         $message = $e->getPrevious()?->getMessage() ?? $e->getMessage();
 
-        return trim(strtok($message, "\n") ?: $message);
+        $line = trim(strtok($message, "\n") ?: $message);
+
+        // "SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied ..." -> "SELECT command denied ..."
+        return preg_replace('~^SQLSTATE\[\w+\]:[^:]*:\s*\d+\s*~', '', $line) ?? $line;
     }
 }

@@ -110,7 +110,8 @@ final class StaleStatistics implements Check
                 category: $this->category(),
                 severity: Severity::Warning,
                 subject: $t['name'],
-                title: "Statistics for {$t['name']} are {$age} days old and ".number_format((int) $changed).' rows have changed since',
+                title: "Statistics for {$t['name']} describe ".number_format($stat['rows']).' rows, and '.number_format((int) $changed).' rows have changed since they were taken'
+                    .($age > 0 ? " {$age} days ago" : ''),
                 detail: 'The optimizer believes the table has '.number_format($stat['rows']).' rows'
                     .($tableOff ? ' and automatic recalculation is switched off for this table (STATS_AUTO_RECALC=0).' : '.')
                     .' Refreshing statistics is cheap: ANALYZE TABLE samples a few pages and does not rebuild anything.',

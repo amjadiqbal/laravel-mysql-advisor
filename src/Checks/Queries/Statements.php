@@ -77,7 +77,7 @@ final class Statements
 
             self::$cache[$key] = array_map(static fn (array $r): array => [
                 'digest' => (string) $r['digest'],
-                'text' => (string) $r['text'],
+                'text' => trim((string) $r['text']),
                 'calls' => (int) $r['calls'],
                 'total' => (float) $r['total'],
                 'avg' => (float) $r['avg'],
